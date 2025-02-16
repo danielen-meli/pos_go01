@@ -3,11 +3,11 @@
 ### Server.go:
 
 * Criar um servidor HTTP básico na porta 8080 usando o pacote net/http. (OK)
-* Configurar um handler para o endpoint /cotacao.
-* Realizar uma requisição GET na API https://economia.awesomeapi.com.br/json/last/USD-BRL.
-* Configurar um contexto com timeout de 200ms
-* Na resposta da API, extrair o valor do campo "bid".
-* Estruturar o JSON para ser enviado ao client.go.
+* Configurar um handler para o endpoint /cotacao.(OK)
+* Realizar uma requisição GET na API https://economia.awesomeapi.com.br/json/last/USD-BRL. (ok)
+* Configurar um contexto com timeout de 200ms (ok)
+* Na resposta da API, extrair o valor do campo "bid". ok 
+* Estruturar o JSON para ser enviado ao client.go. 
 * Usar o pacote database/sql para conectar e manipular o banco de dados.
 * Criar um contexto de 10ms para inserir a cotação no banco.
 
