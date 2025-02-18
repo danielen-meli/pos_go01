@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -9,7 +10,26 @@ import (
 	"time"
 )
 
+type Cotacao struct {
+	Bid string `json:"bid"`
+}
+
 func main() {
+	// inicializar o banco de dados
+	db, err := sql.Open("sqlite3", "./cotacoes.db")
+	if err != nil {
+		fmt.Printf("Erro ao abrir o banco de dados: %v\n", err)
+		return
+	}
+	defer db.Close()
+
+	//criar a tabela
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS cotacoes (id INTEGER PRIMARY KEY, bid TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)`)
+	if err != nil {
+		fmt.Printf("Erro ao criar tabela: %v\n", err)
+		return
+	}
+
 	// func que demostra com uma msg que o servidor subiu na rota "/"
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Servidor Go no AR!")
